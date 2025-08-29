@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
+    
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -50,40 +50,88 @@
     }
 
     hr {
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .nav-links {
         margin-bottom: 20px;
     }
+
+    table {
+        margin-top: 35px;
+        border-collapse: collapse;
+        width: 100%;
+        font-family: Arial, sans-serif;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+        color: #333;
+    }
+
+    a {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    a:hover {
+        text-decoration: underline;
+        color: #2c3e50;
+    }
 </style>
+
+</style>
+
 
 </head>
 <body>
-    <h2>Data Ruangan</h2>
+    <h2>Halaman Utama Ruangan</h2>
 
     <div class="nav-link">
-        <a href="tambah.php">Tambah Data</a> |
+        <a href="tambah.php">Tambah Data</a>
         <a href="../index.php">Kembali</a>
+
+        <hr>
+
+        <table border="1">
+            <tr>
+                <th>No</th>
+                <th>Id Ruangan</th>
+                <th>Nama Ruangan</th>
+                <th>Jenis Ruangan</th>
+                <th>Lokasi</th>
+                <th>Kapasitas</th>
+                <th>Kondisi</th>
+                <th>Edit & Hapus</th>
+            </tr>
+
+            <?php
+                $no = 1;
+                while($data = mysqli_fetch_array($query)) : ?>
+
+            <tr>
+                <td><?php echo $no++; ?></td>
+                <td><?php echo $data['id_ruangan']; ?></td>
+                <td><?php echo $data['nama_ruangan']; ?></td>
+                <td><?php echo $data['jenis_ruangan']; ?></td>
+                <td><?php echo $data['lokasi']; ?></td>
+                <td><?php echo $data['kapasitas']; ?></td>
+                <td><?php echo $data['kondisi']; ?></td>
+                <td>
+                    <a href="edit.php?id_ruangan=<?= $data['id_ruangan']; ?>">Edit</a>
+                    <a href="hapus.php?id_ruangan=<?= $data['id_ruangan']; ?>" onclick="return confirm('Apakah Anda yakin akan mengahpus data ini?')">Hapus</a>
+                </td>
+            </tr>
+        <?php endwhile; ?>
+        </table>
     </div>
-    
-    <hr>
-
-    <?php
-    
-    while($data = mysqli_fetch_array($query)) {
-        echo "ID RUANGAN : " . $data['id_ruangan'] . "<br>";
-        echo "KODE RUANGAN : " . $data['id_ruangan'] . "<br>";
-        echo "NAMA RUANGAN : " . $data['nama_ruangan'] . "<br>";
-        echo "JENIS RUANGAN : " . $data['jenis_ruangan'] . "<br>";
-        echo "LOKASI : " . $data['lokasi'] . "<br>";
-        echo "KAPASITAS : " . $data['kapasitas'] . "<br>";
-        echo "KONDISI : " . $data['kondisi'] . "<br>";
-        echo "<a href='edit.php?id_ruangan=$data[id_ruangan]'>[ EDIT ]</a>";
-        echo "<a href='hapus.php?id_ruangan=$data[id_ruangan]'>[ HAPUS ]</a><br>";
-        echo "<hr>";
-    }
-
-    ?>
 </body>
 </html>

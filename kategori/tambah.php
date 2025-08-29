@@ -98,7 +98,7 @@
 
 </head>
 <body>
-    <h2>Tambah Data Ruangan</h2>
+    <h2>Tambah Data Kategori</h2>
     <hr>
 
     <form action="" method="POST">

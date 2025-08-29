@@ -7,7 +7,7 @@
     $query = mysqli_query($koneksi, "SELECT * FROM ruangan WHERE id_ruangan='$id_ruangan'");
     $data = mysqli_fetch_array($query);
 
-    if(isset($data['update'])) {
+    if(isset($_POST['update'])) {
         $kode_ruangan = $_POST['kode_ruangan'];
         $nama_ruangan = $_POST['nama_ruangan'];
         $jenis_ruangan = $_POST['jenis_ruangan'];
@@ -15,7 +15,7 @@
         $kapasitas = $_POST['kapasitas'];
         $kondisi = $_POST['kondisi'];
 
-        $update_query = mysqli_fetch_array($koneksi, "UPDATE ruangan SET kode_ruangan='$kode_ruangan', nama_ruangan='$nama_ruangan', jenis_ruangan='$jenis_ruangan', lokasi='$lokasi', kapasitas='$kapasitas', kondisi='$kondisi' WHERE id_ruangan = $id_ruangan");
+        $update_query = mysqli_query($koneksi, "UPDATE ruangan SET kode_ruangan='$kode_ruangan', nama_ruangan='$nama_ruangan', jenis_ruangan='$jenis_ruangan', lokasi='$lokasi', kapasitas='$kapasitas', kondisi='$kondisi' WHERE id_ruangan = $id_ruangan");
 
         if($update_query) {
             echo "<script>alert ('Data Berhasil Di Edit'); window.location.href='index.php';</script>";
@@ -112,7 +112,7 @@
     <a href="index.php">Kembali</a>
     <hr>
 
-    <form action="" method="GET">
+    <form action="" method="POST">
         <table>
             <tr>
                 <td>Kode Ruangan</td>
@@ -137,7 +137,7 @@
             <tr>
                 <td>Kapastitas</td>
                 <td>:</td>
-                <td><input type="kapasitas" name="kapasitas" value="<?php echo $data['kapasitas']?>"></td>
+                <td><input type="number" name="kapasitas" value="<?php echo $data['kapasitas']?>"></td>
             </tr>
             <tr>
                 <td>Kondisi</td>
@@ -147,7 +147,7 @@
             <tr>
                 <td></td>
                 <td></td>
-                <td><input type="submit" name="update" value="Tambah Data">
+                <td><input type="submit" name="update" value="Update">
                 <a href="index.php"></a></td>
             </tr>
             </tr>

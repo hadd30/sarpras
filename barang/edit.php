@@ -107,62 +107,63 @@
 </style>
 
 </head>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Edit Data Barang</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
 <body>
-    <h2>Edit Data Barang</h2>
+    <h2>Halaman Tambah Barang</h2>
+    <a href="../index.php">Kembali</a>
+
+    <hr>
+
     <form method="POST">
-        <table>
-            <tr>
-                <td>Kode Barang</td>
-                <td><input type="text" name="kode_barang" value="<?php echo $data['kode_barang']; ?>" required></td>
-            </tr>
-            <tr>
-                <td>Nama Barang</td>
-                <td><input type="text" name="nama_barang" value="<?php echo $data['nama_barang']; ?>" required></td>
-            </tr>
-            <tr>
-                <td>Kategori</td>
-                <td>
-                    <select name="kategori" required>
-                        <option value="">-- Pilih kategori --</option>
-                        <?php
-                        while($id_kategori = mysqli_fetch_array($q_kategori)) {
-                            $selected = ($id_kategori['id_kategori'] == $data['id_kategori']) ? 'selected' : '';
-                            echo "<option value='{$id_kategori['id_kategori']}' $selected>{$id_kategori['nama_kategori']}</option>";
-                        }
-                        ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Stok</td>
-                <td><input type="number" name="stok" value="<?php echo $data['stok']; ?>" required></td>
-            </tr>
-            <tr>
-                <td>Kondisi</td>
-                <td>
-                    <select name="kondisi" required>
-                        <option value="">Silakan Pilih kondisi</option>
-                        <option value="baik" <?= ($data['kondisi'] == 'baik') ? 'selected' : '' ?>>Baik</option>
-                        <option value="kurang_baik" <?= ($data['kondisi'] == 'kurang_baik') ? 'selected' : '' ?>>Kurang Baik</option>
-                        <option value="rusak" <?= ($data['kondisi'] == 'rusak') ? 'selected' : '' ?>>Rusak</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" name="submit" value="Update">
-                    <a href="index.php?page=barang">Kembali</a>
-                </td>
-            </tr>
-        </table>
-    </form>
+    <table>
+        <tr>
+            <td>Kode Barang</td>
+            <td>:</td>
+            <td><input type="text" name="kode_barang" required></td>
+        </tr>
+        <tr>
+            <td>Nama Barang</td>
+            <td>:</td>
+            <td><input type="text" name="nama_barang" required></td>
+        </tr>
+        <tr>
+            <td>Kategori</td>
+            <td>:</td>
+            <td>
+                <select name="kategori" required>
+                    <option value="">-- Pilih Kategori --</option>
+                    <?php while($data_kategori = mysqli_fetch_array($kategori_query)) { ?>
+                        <option value="<?= $data_kategori['id_kategori']; ?>">
+                            <?= $data_kategori['nama_kategori']; ?>
+                        </option>
+                    <?php } ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>Stok</td>
+            <td>:</td>
+            <td><input type="number" name="stok" required></td>
+        </tr>
+        <tr>
+            <td>Kondisi</td>
+            <td>:</td>
+            <td>
+                <select name="kondisi" required>
+                    <option value="baik">Baik</option>
+                    <option value="kurang_baik">Kurang Baik</option>
+                    <option value="buruk">Rusak</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>
+                <input type="submit" name="update" value="Tambah Data">
+            </td>
+        </tr>
+    </table>
+</form>
+
 </body>
 </html>

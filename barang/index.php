@@ -50,7 +50,7 @@
     }
 
     hr {
-        margin-top: 30px;
+        margin-top: 20px;
     }
 
     .nav-links {
@@ -128,7 +128,7 @@
                 </td>
             </tr>
         <?php endwhile; ?>
-        </table>0
+        </table>
     </div>
 </body>
 </html>
